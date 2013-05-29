@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
     uniqueness: { case_sentitive: false }
                     
   validates :password, 
-    presence: true,
     length: { minimum: 6 }
                        
   validates :password_confirmation, 
