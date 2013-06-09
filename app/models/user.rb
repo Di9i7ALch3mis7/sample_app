@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
                   :password,
                   :password_confirmation
   has_secure_password
+  has_many :microposts, dependent: :destroy
   
   before_save { email.downcase! }
   before_save :create_remember_token
@@ -35,6 +36,11 @@ class User < ActiveRecord::Base
                        
   validates :password_confirmation, 
     presence: true
+    
+  def feed
+    # Partial Implementation
+    Micropost.where("user_id = ?", id)
+  end
     
   private
   
